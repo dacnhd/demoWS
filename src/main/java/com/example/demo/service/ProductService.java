@@ -28,10 +28,14 @@ public class ProductService {
     }
 
     @WebMethod
-    public boolean sellProduct(int id, int quantity){
+    public Product getDetail(int id){
+        return productRepository.findById(id).get();
+    }
+    @WebMethod
+    public Product sellProduct(int id, int quantity){
         Product product = productRepository.findById(id).get();
         product.setQuantity(quantity);
         productRepository.save(product);
-        return true;
+        return product;
     }
 }
